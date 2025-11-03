@@ -23,6 +23,7 @@ namespace pryBarrazaBarMilangaaa
             int indiColumna = 0;
 
             dgvVentas.Columns.Add("colMozos", "mozos");
+            dgvVentas.Columns["colMozos"].ReadOnly = true;
             dgvVentas.Columns.Add("colComidas", "Comidas");
             dgvVentas.Columns.Add("colBebidasSinAlchol", "Bebidas Sin Alchol");
             dgvVentas.Columns.Add("colBebidasConAlchol", "Bebidas Con Alchol");
@@ -34,26 +35,31 @@ namespace pryBarrazaBarMilangaaa
             dgvVentas.Rows.Add("Gonzalo", "", "", "", "");
             dgvVentas.Rows.Add("Alberto", "", "", "", "");
 
-            //for (indiFila = 0; indiFila < dgvVentas.Rows.Count - 1; indiFila++)
-            //{
-            //    for (indiColumna = 1; indiColumna < dgvVentas.Columns.Count; indiColumna++)
-            //    {
-            //        dgvVentas[indiColumna, indiFila].Value = 0;
-            //    }
-            //}
+            for (indiFila = 0; indiFila < dgvVentas.Rows.Count - 1; indiFila++)
+            {
+                for (indiColumna = 1; indiColumna < dgvVentas.Columns.Count; indiColumna++)
+                {
+                    dgvVentas[indiColumna, indiFila].Value = 0;
+                }
+            }
         }
 
         private void btnValidar_Click(object sender, EventArgs e)
         {
+            bool validado = true;
             foreach (DataGridViewRow fila in dgvVentas.Rows)
             {
+
                 if (fila.IsNewRow) continue;
 
                 foreach (DataGridViewCell celda in fila.Cells)
                 {
+                    celda.Style.BackColor = Color.White;
                     // Verificar si está vacía
                     if (celda.Value == null || celda.Value.ToString().Trim() == "")
                     {
+                        celda.Style.BackColor = Color.LightCoral;
+                        validado= false;
                         MessageBox.Show("⚠️ Faltan completar algunos datos.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
@@ -64,19 +70,28 @@ namespace pryBarrazaBarMilangaaa
                         double numero;
                         if (!double.TryParse(celda.Value.ToString(), out numero))
                         {
+                            validado = false;
+                            celda.Style.BackColor = Color.LightCoral;
                             MessageBox.Show("🚫 Solo se permiten números en las columnas de ventas.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
                     }
                 }
+                validado = true;
             }
-            MessageBox.Show("✅ Todos los datos están cargados correctamente.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if(validado == true){
+                btnMozoDia.Enabled = true;
+                btnTotales.Enabled = true;
+                MessageBox.Show("✅ Todos los datos están cargados correctamente.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            
         }
-        
+
         private void btnMozoDia_Click(object sender, EventArgs e)
         {
             string mozoDelDia = "";
             double maxVentas = 0;
+            List<string> mozosMaxVentas = new List<string>(); // Lista para guardar los mozos con el máximo
             // Recorremos todas las filas
             for (int i = 0; i < dgvVentas.Rows.Count; i++)
             {
@@ -97,19 +112,35 @@ namespace pryBarrazaBarMilangaaa
 
                     total += valor;
                 }
-
+                string mozo = dgvVentas.Rows[i].Cells[0].Value?.ToString() ?? "";
                 // Comprobamos si este mozo tiene el máximo total
                 if (total > maxVentas)
                 {
                     maxVentas = total;
                     mozoDelDia = dgvVentas.Rows[i].Cells[0].Value.ToString();
                 }
+                if (total > maxVentas)
+                {
+                    maxVentas = total;
+                    mozosMaxVentas.Clear();
+                    mozosMaxVentas.Add(mozo);
+                }
+                // Si el total es igual al máximo, agregamos el mozo también
+                else if (Math.Abs(total - maxVentas) < 0.0001) // comparación con tolerancia
+                {
+                    mozosMaxVentas.Add(mozo);
+                }
             }
             //dtvDatos[0,1].Style.BackColor = Color.Red;
-            if (mozoDelDia != "")
-                lblMozodelDia.Text = "El mozo del día: " + mozoDelDia + "\n" + "con " + maxVentas + " ventas.";
+            if (mozosMaxVentas.Count > 0)
+            {
+                string listaMozos = string.Join(", ", mozosMaxVentas);
+                lblMozodelDia.Text = $"Mozo(s) del día: {listaMozos}\ncon {maxVentas} ventas.";
+            }
             else
+            {
                 MessageBox.Show("No hay datos para calcular.");
+            }
         }
 
 
@@ -152,6 +183,11 @@ namespace pryBarrazaBarMilangaaa
             {
                 MessageBox.Show("No hay datos para calcular.");
             }
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

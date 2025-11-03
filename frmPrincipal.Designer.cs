@@ -28,17 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             dgvVentas = new DataGridView();
             btnValidar = new Button();
             btnMozoDia = new Button();
             btnTotales = new Button();
             lblMozodelDia = new Label();
             lblTotales = new Label();
+            btnCerrar = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvVentas).BeginInit();
             SuspendLayout();
             // 
             // dgvVentas
             // 
+            dgvVentas.AllowUserToAddRows = false;
             dgvVentas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvVentas.Location = new Point(95, 24);
             dgvVentas.Name = "dgvVentas";
@@ -57,7 +60,8 @@
             // 
             // btnMozoDia
             // 
-            btnMozoDia.Location = new Point(95, 346);
+            btnMozoDia.Enabled = false;
+            btnMozoDia.Location = new Point(12, 339);
             btnMozoDia.Name = "btnMozoDia";
             btnMozoDia.Size = new Size(129, 40);
             btnMozoDia.TabIndex = 2;
@@ -67,7 +71,8 @@
             // 
             // btnTotales
             // 
-            btnTotales.Location = new Point(378, 346);
+            btnTotales.Enabled = false;
+            btnTotales.Location = new Point(329, 339);
             btnTotales.Name = "btnTotales";
             btnTotales.Size = new Size(129, 40);
             btnTotales.TabIndex = 3;
@@ -78,7 +83,8 @@
             // lblMozodelDia
             // 
             lblMozodelDia.AutoSize = true;
-            lblMozodelDia.Location = new Point(230, 346);
+            lblMozodelDia.Enabled = false;
+            lblMozodelDia.Location = new Point(147, 346);
             lblMozodelDia.Name = "lblMozodelDia";
             lblMozodelDia.Size = new Size(0, 15);
             lblMozodelDia.TabIndex = 4;
@@ -86,23 +92,36 @@
             // lblTotales
             // 
             lblTotales.AutoSize = true;
-            lblTotales.Location = new Point(513, 346);
+            lblTotales.Location = new Point(464, 346);
             lblTotales.Name = "lblTotales";
             lblTotales.Size = new Size(0, 15);
             lblTotales.TabIndex = 5;
+            // 
+            // btnCerrar
+            // 
+            btnCerrar.Location = new Point(649, 339);
+            btnCerrar.Name = "btnCerrar";
+            btnCerrar.Size = new Size(129, 40);
+            btnCerrar.TabIndex = 6;
+            btnCerrar.Text = "Cerrar";
+            btnCerrar.UseVisualStyleBackColor = true;
+            btnCerrar.Click += btnCerrar_Click;
             // 
             // frmPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnCerrar);
             Controls.Add(lblTotales);
             Controls.Add(lblMozodelDia);
             Controls.Add(btnTotales);
             Controls.Add(btnMozoDia);
             Controls.Add(btnValidar);
             Controls.Add(dgvVentas);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmPrincipal";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmPrincipal";
             Load += frmPrincipal_Load;
             ((System.ComponentModel.ISupportInitialize)dgvVentas).EndInit();
@@ -118,5 +137,6 @@
         private Button btnTotales;
         private Label lblMozodelDia;
         private Label lblTotales;
+        private Button btnCerrar;
     }
 }
