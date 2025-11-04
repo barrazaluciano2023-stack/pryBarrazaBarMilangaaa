@@ -43,16 +43,16 @@
             // 
             dgvVentas.AllowUserToAddRows = false;
             dgvVentas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvVentas.Location = new Point(95, 24);
+            dgvVentas.Location = new Point(165, 30);
             dgvVentas.Name = "dgvVentas";
-            dgvVentas.Size = new Size(578, 309);
+            dgvVentas.Size = new Size(446, 193);
             dgvVentas.TabIndex = 0;
             // 
             // btnValidar
             // 
-            btnValidar.Location = new Point(679, 171);
+            btnValidar.Location = new Point(165, 373);
             btnValidar.Name = "btnValidar";
-            btnValidar.Size = new Size(111, 46);
+            btnValidar.Size = new Size(129, 46);
             btnValidar.TabIndex = 1;
             btnValidar.Text = "Validar Datos";
             btnValidar.UseVisualStyleBackColor = true;
@@ -61,9 +61,9 @@
             // btnMozoDia
             // 
             btnMozoDia.Enabled = false;
-            btnMozoDia.Location = new Point(12, 339);
+            btnMozoDia.Location = new Point(165, 238);
             btnMozoDia.Name = "btnMozoDia";
-            btnMozoDia.Size = new Size(129, 40);
+            btnMozoDia.Size = new Size(129, 46);
             btnMozoDia.TabIndex = 2;
             btnMozoDia.Text = "Mozo del Dia";
             btnMozoDia.UseVisualStyleBackColor = true;
@@ -72,9 +72,9 @@
             // btnTotales
             // 
             btnTotales.Enabled = false;
-            btnTotales.Location = new Point(329, 339);
+            btnTotales.Location = new Point(165, 311);
             btnTotales.Name = "btnTotales";
-            btnTotales.Size = new Size(129, 40);
+            btnTotales.Size = new Size(129, 46);
             btnTotales.TabIndex = 3;
             btnTotales.Text = "Totales";
             btnTotales.UseVisualStyleBackColor = true;
@@ -84,24 +84,26 @@
             // 
             lblMozodelDia.AutoSize = true;
             lblMozodelDia.Enabled = false;
-            lblMozodelDia.Location = new Point(147, 346);
+            lblMozodelDia.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblMozodelDia.Location = new Point(300, 245);
             lblMozodelDia.Name = "lblMozodelDia";
-            lblMozodelDia.Size = new Size(0, 15);
+            lblMozodelDia.Size = new Size(0, 21);
             lblMozodelDia.TabIndex = 4;
             // 
             // lblTotales
             // 
             lblTotales.AutoSize = true;
-            lblTotales.Location = new Point(464, 346);
+            lblTotales.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTotales.Location = new Point(300, 318);
             lblTotales.Name = "lblTotales";
-            lblTotales.Size = new Size(0, 15);
+            lblTotales.Size = new Size(0, 21);
             lblTotales.TabIndex = 5;
             // 
             // btnCerrar
             // 
-            btnCerrar.Location = new Point(649, 339);
+            btnCerrar.Location = new Point(659, 373);
             btnCerrar.Name = "btnCerrar";
-            btnCerrar.Size = new Size(129, 40);
+            btnCerrar.Size = new Size(129, 46);
             btnCerrar.TabIndex = 6;
             btnCerrar.Text = "Cerrar";
             btnCerrar.UseVisualStyleBackColor = true;

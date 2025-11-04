@@ -21,7 +21,7 @@ namespace pryBarrazaBarMilangaaa
         {
             int indiFila = 0;
             int indiColumna = 0;
-
+            dgvVentas.RowHeadersVisible = false;
             dgvVentas.Columns.Add("colMozos", "mozos");
             dgvVentas.Columns["colMozos"].ReadOnly = true;
             dgvVentas.Columns.Add("colComidas", "Comidas");
@@ -35,7 +35,7 @@ namespace pryBarrazaBarMilangaaa
             dgvVentas.Rows.Add("Gonzalo", "", "", "", "");
             dgvVentas.Rows.Add("Alberto", "", "", "", "");
 
-            for (indiFila = 0; indiFila < dgvVentas.Rows.Count - 1; indiFila++)
+            for (indiFila = 0; indiFila < dgvVentas.Rows.Count ; indiFila++)
             {
                 for (indiColumna = 1; indiColumna < dgvVentas.Columns.Count; indiColumna++)
                 {
